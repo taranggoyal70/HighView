@@ -4,22 +4,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 
 const courses = [
   {
-    title: 'Introduction to Data Science',
-    description: 'Learn the fundamentals of data analysis and visualization',
-    students: 45,
-    duration: '12 weeks',
+    title: 'AI Foundation',
+    description: 'An introductory AI course designed for college freshmen. Covers core concepts, tools, and real-world applications of artificial intelligence.',
+    audience: 'Freshmen',
+    students: 40,
+    duration: 'TBD',
   },
   {
-    title: 'Web Development Bootcamp',
-    description: 'Full-stack web development with modern technologies',
-    students: 38,
-    duration: '16 weeks',
+    title: 'AI 201',
+    description: 'A sophomore-level course building on AI fundamentals. Explores intermediate AI concepts, data analysis, and hands-on projects.',
+    audience: 'Sophomores',
+    students: 35,
+    duration: 'TBD',
   },
   {
-    title: 'Machine Learning Basics',
-    description: 'Introduction to ML algorithms and applications',
-    students: 32,
-    duration: '10 weeks',
+    title: 'AI for Job Search',
+    description: 'A practical course for upperclassmen on leveraging AI tools for career development, job searching, networking, and professional growth.',
+    audience: 'Sophomores, Juniors & Seniors',
+    students: 50,
+    duration: 'TBD',
   },
 ]
 
@@ -47,6 +50,11 @@ export default function CoursesPage() {
               <Card className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <BookOpen className="h-10 w-10 text-primary mb-3" />
+                  <div className="mb-2">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-indigo-100 text-indigo-700">
+                      {course.audience}
+                    </span>
+                  </div>
                   <CardTitle className="text-xl">{course.title}</CardTitle>
                   <CardDescription>{course.description}</CardDescription>
                 </CardHeader>
@@ -54,7 +62,7 @@ export default function CoursesPage() {
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
-                      <span>{course.students}</span>
+                      <span>{course.students} students</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />

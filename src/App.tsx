@@ -11,6 +11,8 @@ import DashboardPage from './pages/DashboardPage'
 import AttendancePage from './pages/AttendancePage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import AnalyticsPage from './pages/AnalyticsPage'
+import CohortPage from './pages/CohortPage'
+import StudentProfilePage from './pages/StudentProfilePage'
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/attendance" element={<AttendancePage />} />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/cohort" element={<CohortPage />} />
+        <Route path="/cohort/:studentId" element={<StudentProfilePage />} />
         {/* Catch-all route for 404 */}
         <Route path="*" element={<HomePage />} />
       </Route>

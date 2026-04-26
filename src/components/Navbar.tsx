@@ -10,6 +10,7 @@ const navItems = [
   { name: 'Attendance', href: '/attendance' },
   { name: 'Leaderboard', href: '/leaderboard' },
   { name: 'Analytics', href: '/analytics' },
+  { name: 'Cohort', href: '/cohort' },
   { name: 'Students', href: '/students' },
   { name: 'Courses', href: '/courses' },
   { name: 'Sessions', href: '/sessions' },
