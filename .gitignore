@@ -43,3 +43,6 @@ aws-exports.js
 # IDE
 .vscode/
 .idea/
+
+# Private student data (keep on localhost only)
+src/data/students.json
