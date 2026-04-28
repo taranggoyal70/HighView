@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Brain, BookOpen, Calendar, Mail, GraduationCap, Clock } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
+import { cohortStudents } from '../data/transformStudents'
 
 interface StudentRecord {
   record_id: string
@@ -98,14 +99,31 @@ export default function StudentProfilePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    loadCSVData().then(data => {
-      const all = data.length > 0 ? data : mockStudents
-      const found = all.find(s => s.student_id === studentId)
-      setStudent(found || null)
-    }).catch(() => {
-      const found = mockStudents.find(s => s.student_id === studentId)
-      setStudent(found || null)
-    }).finally(() => setLoading(false))
+    // Use real student data from students.json
+    const realStudent = cohortStudents.find(s => s.id === studentId)
+    if (realStudent) {
+      // Transform to StudentRecord format
+      const studentRecord: StudentRecord = {
+        student_id: realStudent.id,
+        student_name: realStudent.name,
+        student_email: realStudent.email,
+        class_name: realStudent.major,
+        attendance: realStudent.sessionAttendance,
+        engagement: realStudent.ai,
+        grade: realStudent.experiential,
+        teacher_name: 'HighView Staff',
+        session_date: '2026-09-01',
+        photo_url: `https://ui-avatars.com/api/?name=${realStudent.name.replace(' ', '+')}&background=random`,
+        department: realStudent.school,
+        topic: '2026-27 College Cohort',
+        speaking_time: realStudent.eventsAttended * 10,
+        record_id: realStudent.id
+      }
+      setStudent(studentRecord)
+    } else {
+      setStudent(null)
+    }
+    setLoading(false)
   }, [studentId])
 
   if (loading) {

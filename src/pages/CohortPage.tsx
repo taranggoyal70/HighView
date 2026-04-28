@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Download, Search, ChevronDown, X } from 'lucide-react'
 import { Button } from '../components/ui/button'
+import { cohortStudents } from '../data/transformStudents'
 
-// ── Mock data matching wireframe ──────────────────────────────────────────────
+// ── Real data from students.json ──────────────────────────────────────────────
 
-const SEMESTERS = ['Spring 2025', 'Fall 2024', 'Summer 2024', 'Spring 2024']
+const SEMESTERS = ['Spring 2026', 'Fall 2025', 'Summer 2025', 'Spring 2025']
 
 const PILLARS = {
   ai: { score: 64, completed: 41, inProgress: 30, notStarted: 23 },
@@ -42,46 +43,7 @@ interface Student {
   staffNotes: { text: string; date: string; author: string }[]
 }
 
-const STUDENTS: Student[] = [
-  {
-    id: '1', name: 'Jamie Reyes', initials: 'JR', school: 'CU Denver', year: 'Junior',
-    ai: 75, experiential: 60, sessionAttendance: 85, status: 'On track', lastActive: 'Today',
-    email: 'j.reyes@ucdenver.edu', phone: '(720) 555-0143', major: 'Business Administration', note: 'Scholarship recipient',
-    eventsAttended: 7, applications: 3, mentorSessions: 4, jobShadows: 1,
-    opportunities: [
-      { title: 'Brand Strategy Micro-Internship', subtitle: 'Crocs Inc. · Applied Mar 28' },
-      { title: 'Curated Connections — Spring', subtitle: 'Registered · Apr 4' },
-    ],
-    staffNotes: [
-      { text: 'Strong communicator — ready for client-facing micro-internship', date: 'Mar 12', author: 'A. Reeves' },
-      { text: 'Connected with mentor Danielle K. — check in after Apr session', date: 'Feb 28', author: 'A. Reeves' },
-    ],
-  },
-  {
-    id: '2', name: 'Marcus Lee', initials: 'ML', school: 'MSU Denver', year: 'Sophomore',
-    ai: 35, experiential: 25, sessionAttendance: 20, status: 'At risk', lastActive: '18 days ago',
-    email: 'm.lee@msudenver.edu', phone: '(720) 555-0192', major: 'Finance', note: '',
-    eventsAttended: 2, applications: 1, mentorSessions: 1, jobShadows: 0,
-    opportunities: [],
-    staffNotes: [{ text: "Needs outreach — hasn't engaged in 3 weeks", date: 'Apr 3', author: 'A. Reeves' }],
-  },
-  {
-    id: '3', name: 'Sofia Alvarez', initials: 'SA', school: 'Regis University', year: 'Senior',
-    ai: 70, experiential: 68, sessionAttendance: 75, status: 'On track', lastActive: '2 days ago',
-    email: 's.alvarez@regis.edu', phone: '(303) 555-0174', major: 'Marketing', note: '',
-    eventsAttended: 5, applications: 4, mentorSessions: 3, jobShadows: 2,
-    opportunities: [{ title: 'Marketing Internship — Denver Post', subtitle: 'Applied · Apr 10' }],
-    staffNotes: [{ text: 'Strong candidate for summer internship program', date: 'Mar 25', author: 'A. Reeves' }],
-  },
-  {
-    id: '4', name: 'Darius Kim', initials: 'DK', school: 'CU Denver', year: 'Freshman',
-    ai: 10, experiential: 8, sessionAttendance: 12, status: 'At risk', lastActive: '34 days ago',
-    email: 'd.kim@ucdenver.edu', phone: '(720) 555-0155', major: 'Computer Science', note: '',
-    eventsAttended: 0, applications: 0, mentorSessions: 0, jobShadows: 0,
-    opportunities: [],
-    staffNotes: [{ text: 'No activity since first week — urgent follow-up needed', date: 'Mar 10', author: 'A. Reeves' }],
-  },
-]
+const STUDENTS: Student[] = cohortStudents
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 

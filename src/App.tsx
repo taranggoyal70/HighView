@@ -13,6 +13,7 @@ import LeaderboardPage from './pages/LeaderboardPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import CohortPage from './pages/CohortPage'
 import StudentProfilePage from './pages/StudentProfilePage'
+import OpportunitiesPage from './pages/OpportunitiesPage'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/cohort" element={<CohortPage />} />
         <Route path="/cohort/:studentId" element={<StudentProfilePage />} />
+        <Route path="/explore" element={<OpportunitiesPage />} />
         {/* Catch-all route for 404 */}
         <Route path="*" element={<HomePage />} />
       </Route>

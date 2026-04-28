@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { useState, useEffect } from 'react'
 import { getAllStudents, addStudent } from '../services/api'
+import { realStudents } from '../data/transformStudents'
 import {
   BarChart,
   Bar,
@@ -109,13 +110,29 @@ export default function StudentsPage() {
     const fetchStudents = async () => {
       try {
         setLoading(true)
-        const csvData = await loadCSVData()
-        console.log('Loaded CSV students:', csvData)
-        setApiStudents(csvData)
+        // Use real student data from students.json
+        const transformedStudents = realStudents.map(student => ({
+          student_id: student.id,
+          student_name: student.name,
+          student_email: student.email,
+          class_name: student.major,
+          attendance: student.attendanceRate,
+          engagement: student.engagementScore,
+          grade: Math.round(student.gpa * 25), // Convert GPA to percentage
+          teacher_name: 'HighView Staff',
+          session_date: student.enrollmentDate,
+          photo_url: student.picture,
+          department: student.university,
+          topic: student.cohort,
+          speaking_time: Math.round(student.sessionsAttended * 10),
+          record_id: `${student.id}_${student.name.replace(/\s/g, '_')}`
+        }))
+        console.log('Loaded real students:', transformedStudents)
+        setApiStudents(transformedStudents)
         setError(null)
       } catch (err) {
         console.error('Error loading students:', err)
-        // Use real data from GitHub as fallback
+        // Use real data as fallback
         const mockStudents = [
           {
             student_id: '10001',
